@@ -1,0 +1,67 @@
+#! /bin/sh
+
+# Clean up rules when reloading this config:
+bspc rule -r "*"
+
+# =========== NOT USED ========================
+# killall -q polybar
+# while pgrep -x polybar >/dev/null; do sleep 1; done
+# polybar -q example &
+# nitrogen --restore
+# (cat ~/.cache/wal/sequences &)
+# =========== NOT USED ========================
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+killall picom
+setxkbmap no &
+$HOME/.config/polybar/launch.sh --shapes &
+bash ~/.config/polybar/shapes/scripts/pywal.sh ~/Documents/Wallpapers/4K/
+# bash ~/.config/polybar/shapes/scripts/pywal.sh ~/Documents/Wallpapers/4K/camping-nature-sunrise-river-night-sky-scenery-uhdpaper.com-4K-8.3211.jpg
+(cat ~/.cache/wal/sequences &)
+# wal -n -i ~/Documents/Wallpapers/4K/darccity.jpg --saturate 0.75 &
+picom -b --experimental-backends &
+
+
+# bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 0
+ 
+# bspc monitor eDP1 -d I II III IV V 
+# bspc monitor DP2-1 -d VI VII VIII IX X
+
+# Visual settings
+. "${HOME}/.cache/wal/colors.sh"
+bspc config normal_border_color		"$color2"
+bspc config active_border_color		"$color5"
+bspc config focused_border_color	"$color4"
+bspc config presel_feedback_color	"$color2"
+bspc config border_width         	2
+bspc config window_gap           	30
+bspc config top_padding           	50
+
+# bspc config normal_border_color		"#398564"	
+# bspc config active_border_color		"#ffbf00"	
+# bspc config focused_border_color	"#cefd7d"	
+bspc config split_ratio          	0.52
+bspc config borderless_monocle   	true
+bspc config gapless_monocle      	false
+# bspc config gapless_monocle     false #Default setup uses negative padding, and gapless monocle looks really weird like that
+bspc config single_monocle false
+# bspc config paddingless_monocle false
+bspc config ignore_ewmh_focus      true
+bspc config initial_polarity second_child
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a zathura state=tiled
+# bspc rule -a brave private=on
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a tdrop border=off
+
+# Dropdown terminal
+bspc rule -a scratchpad sticky=on state=floating hidden=on
+# check if already running
+["$(ps -x | grep -c 'scratchpad')" -eq "1"] && alacritty -class scratchpad -e ~/bin/scratch &

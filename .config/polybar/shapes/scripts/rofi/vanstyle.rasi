@@ -1,0 +1,6 @@
+/* colors */
+
+* {
+  Jet24:	"JetBrainsMono ExtraBold 24" 
+}
+/* vim:ft=css
