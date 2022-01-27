@@ -18,4 +18,4 @@ path=("$HOME/bin" "/var/lib/pacman/local" "/usr/bin" "$HOME/.config/.aliasrc" "$
 export PATH
 
 # Silly pfetch stuff
-export PF_INFO"ascii title os shell editor wm host kernel pkgs memory palette"
+export PF_INFO="ascii title os shell editor wm host kernel pkgs memory palette"

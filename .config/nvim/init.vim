@@ -14,6 +14,7 @@ call plug#begin()
     Plug 'vim-airline/vim-airline-themes'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Themes/Aesthetics
+	Plug 'ajmwagar/vim-deus'
     Plug 'dylanaraps/wal.vim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 	Plug 'sainnhe/everforest'
@@ -63,7 +64,7 @@ let mapleader="ø"
 let maplocalleader="æ"
 nnoremap <silent> <leader>e :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>s :source ~/.config/nvim/init.vim<CR>
-
+nnoremap <localleader>s :! sddm-greeter --test-mode --theme /usr/share/sddm/themes/Elevan/Main.qml<CR>
 
 map <F5> i{<Esc>ea}<Esc>
 imap jj <Esc>

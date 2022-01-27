@@ -44,6 +44,9 @@ elif [[ "$1" == "--cuts" ]]; then
 elif [[ "$1" == "--shapes" ]]; then
 	style="shapes"
 	launch_bar
+	if [[ $my_laptop_external_monitor = *connected* ]]; then
+		polybar -q main_external -c $HOME/.config/polybar/shapes/config.ini &
+	fi
 
 elif [[ "$1" == "--grayblocks" ]]; then
 	style="grayblocks"
@@ -60,7 +63,7 @@ elif [[ "$1" == "--colorblocks" ]]; then
 elif [[ "$1" == "--forest" ]]; then
 	style="forest"
 	launch_bar
-
+	my_laptop_external_monitor=$(xrandr --query | grep 'DP2-1')
 elif [[ "$1" == "--pwidgets" ]]; then
 	style="pwidgets"
 	launch_bar
